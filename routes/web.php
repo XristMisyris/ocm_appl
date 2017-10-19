@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PokemonsController@index');
+
+Route::get('/pokeking', 'PokemonsController@pokeking');
