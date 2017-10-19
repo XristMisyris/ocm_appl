@@ -11,4 +11,9 @@ class Pokemon extends Model
     protected $table = 'pokemons';
 
     public $timestamps = false;
+
+    public function infos()
+    {
+        return $this->hasOne(PokemonProfiles::class, 'pokemon_id');
+    }
 }
