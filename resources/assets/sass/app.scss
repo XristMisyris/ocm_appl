@@ -1,9 +1,32 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+html, body {
+  background-color: #fff;
+  height: 100vh;
+  margin: 0;
+}
+
+td {
+  vertical-align: middle!important;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.title {
+  font-family: serif;
+  font-weight: 100;
+  font-size: 84px;
+  text-align: center;
+}
