@@ -51,7 +51,6 @@ class FetchPokemons extends Command
      */
     public function handle()
     {
-        DB::table('pokemons')->truncate();
         $this->info('Fetching pokemons. Please wait...');
         $this->fetchPokemon(self::URL);
         $this->info('All pokemons have been fetched!!');
