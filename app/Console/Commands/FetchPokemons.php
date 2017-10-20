@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Pokemon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class FetchPokemons extends Command
 {
