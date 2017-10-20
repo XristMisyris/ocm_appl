@@ -7,21 +7,21 @@ use App\PokemonProfiles;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class FetchPokemonsInfos extends Command
+class FetchPokemonsProfiles extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'pokemons:fetch-infos';
+    protected $signature = 'pokemons:fetch-profiles';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Fetch all pokemons infos';
+    protected $description = 'Fetch all pokemons profiles';
 
     /**
      * Guzzle Client
@@ -48,12 +48,12 @@ class FetchPokemonsInfos extends Command
      */
     public function handle()
     {
-        $this->info('Fetching pokemons infos. Please wait...');
-        $this->fetchPokemonsInfos();
-        $this->info('All pokemons infos have been fetched!!');
+        $this->info('Fetching pokemons profiles. Please wait...This may take a while.');
+        $this->fetchPokemonsProfiles();
+        $this->info('All pokemons profiles have been fetched!!');
     }
 
-    public function fetchPokemonsInfos()
+    public function fetchPokemonsProfiles()
     {
         $pokemons = Pokemon::all();
 
