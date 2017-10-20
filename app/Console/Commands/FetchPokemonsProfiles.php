@@ -31,6 +31,16 @@ class FetchPokemonsProfiles extends Command
     protected $client;
 
     /**
+     * Progress Bars
+     */
+    protected $bar;
+
+    /*
+     * Pokemons
+     */
+    protected $pokemons;
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -39,6 +49,7 @@ class FetchPokemonsProfiles extends Command
     {
         parent::__construct();
         $this->client = new Client();
+        $this->pokemons = Pokemon::all();
     }
 
     /**
@@ -49,15 +60,17 @@ class FetchPokemonsProfiles extends Command
     public function handle()
     {
         $this->info('Fetching pokemons profiles. Please wait...This may take a while.');
+        $this->bar = $this->output->createProgressBar($this->pokemons->count());
         $this->fetchPokemonsProfiles();
-        $this->info('All pokemons profiles have been fetched!!');
+        $this->info(' Completed.');
     }
 
+    /**
+     * Fetch pokemons profiles
+     */
     public function fetchPokemonsProfiles()
     {
-        $pokemons = Pokemon::all();
-
-        foreach ($pokemons as $pokemon)
+        foreach ($this->pokemons as $pokemon)
         {
             $pokemon_url = $pokemon->url;
             $body = $this->client->request('GET', $pokemon_url)->getBody();
@@ -67,6 +80,9 @@ class FetchPokemonsProfiles extends Command
                 $pokemon_info = new PokemonProfiles(['informations' => $data]);
                 $pokemon->infos()->save($pokemon_info);
             }
+
+            $this->bar->advance();
         }
+        $this->bar->finish();
     }
 }
